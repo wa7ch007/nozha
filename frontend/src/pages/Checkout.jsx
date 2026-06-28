@@ -20,25 +20,28 @@ export default function Checkout() {
 
   // ⭐ Stripe Checkout
   const handlePayment = async () => {
-    const res = await fetch(
-      "https://nozha.onrender.com/create-checkout-session",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cart })
-      }
-    );
-    const res = await fetch(
-      "https://nozha.onrender.com/create-checkout-session",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cart })
-      }
-    );
+    try {
+      const res = await fetch(
+        "https://nozha.onrender.com/create-checkout-session",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ cart })
+        }
+      );
 
-    const data = await res.json();
-    window.location.href = data.url;
+      const data = await res.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("خطأ في الدفع");
+        console.log(data);
+      }
+    } catch (err) {
+      console.log("Error:", err);
+      alert("حدث خطأ أثناء الاتصال بالسيرفر");
+    }
   };
 
   return (
