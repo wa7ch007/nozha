@@ -20,6 +20,8 @@ export default function Checkout() {
 
   // ⭐ Stripe Checkout
   const handlePayment = async () => {
+    console.log("Cart being sent:", cart);
+
     try {
       const res = await fetch(
         "https://nozha.onrender.com/create-checkout-session",
