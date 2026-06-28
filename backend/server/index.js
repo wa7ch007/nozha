@@ -6,7 +6,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://nozha.vercel.app",
+    origin: [
+      "https://nozha.vercel.app",
+      "https://nozha-59ls9i374-momoman2029-4423s-projects.vercel.app"
+    ],
     methods: ["GET", "POST"]
   })
 );
