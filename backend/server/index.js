@@ -1,5 +1,10 @@
+const express = require("express");
 const cors = require("cors");
+const Stripe = require("stripe");
 
+const app = express();
+
+// ⭐ CORS الصحيح
 app.use(
   cors({
     origin: "https://nozha.vercel.app",
@@ -7,15 +12,10 @@ app.use(
   })
 );
 
-const express = require("express");
-const Stripe = require("stripe");
-const cors = require("cors");
-
-const app = express();
-app.use(cors());
 app.use(express.json());
 
-const stripe = Stripe("process.env.STRIPE_SECRET");
+// ⭐ Stripe Secret من Render
+const stripe = Stripe(process.env.STRIPE_SECRET);
 
 app.post("/create-checkout-session", async (req, res) => {
   const { cart } = req.body;
@@ -35,8 +35,8 @@ app.post("/create-checkout-session", async (req, res) => {
     payment_method_types: ["card"],
     line_items,
     mode: "payment",
-    success_url: "http://localhost:5173/success",
-    cancel_url: "http://localhost:5173/cart"
+    success_url: "https://nozha.vercel.app/success",
+    cancel_url: "https://nozha.vercel.app/cart"
   });
 
   res.json({ url: session.url });
