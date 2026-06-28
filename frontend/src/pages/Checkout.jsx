@@ -20,7 +20,7 @@ export default function Checkout() {
 
   // ⭐ Stripe Checkout
   const handlePayment = async () => {
-    const res = await fetch("http://localhost:3000/create-checkout-session", {
+    const res = await fetch("https://nozha.onrender.com/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ cart })
