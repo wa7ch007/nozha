@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: "Cairo", sans-serif;
+}
+.wave-layer {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.5) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transform: scale(0.2);
+  transition:
+    transform 0.5s ease-out,
+    opacity 0.5s ease-out;
+}
+
+.wave-anim .wave-layer {
+  opacity: 1;
+  transform: scale(3);
+}
+
+.flash-layer {
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+}
+
+.flash-anim .flash-layer {
+  animation: flashPulse 0.35s ease-out;
+}
+
+@keyframes flashPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.added-anim {
+  animation: cartPop 0.4s ease-out;
+}
+
+@keyframes cartPop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.12);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
