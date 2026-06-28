@@ -4,12 +4,10 @@ const Stripe = require("stripe");
 
 const app = express();
 
+// ⭐ افتح كل شيء مؤقتًا لحل المشكلة
 app.use(
   cors({
-    origin: [
-      "https://nozha.vercel.app",
-      "https://nozha-59ls9i374-momoman2029-4423s-projects.vercel.app"
-    ],
+    origin: "*",
     methods: ["GET", "POST"]
   })
 );
