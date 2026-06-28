@@ -1,3 +1,12 @@
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "https://nozha.vercel.app",
+    methods: ["GET", "POST"]
+  })
+);
+
 const express = require("express");
 const Stripe = require("stripe");
 const cors = require("cors");
